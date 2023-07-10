@@ -1,0 +1,42 @@
+{% extends "boardbase.html" %}
+{% block content %}
+<p>4대보험 사업주부담금 자동입력</p>
+<div>
+       <p>사용방법</p> 
+       <ul>
+            <li>각 보험공단의 edi 홈페이지서 파일을 받을 것</li>
+            <li>각 파일의 확장자는 xlsx로 설정할 것</li>
+            <li>각 엑셀 파일의 상단 및 좌측의 빈 칸이 없게 할 것</li>
+            <li>각 파일의 같은 대상자가 여러 줄 있을 경우 한 줄로 설정할 것</li>
+       </ul>
+</div>
+
+<div class="row row-cols-2">
+    <div class="col">
+        <ul>
+            <form action="combine_files" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <li>4대보험 자동입력을 위한 파일 선택</li>
+
+                <li>건강보험</li>
+                <input id="health_input" type="file" name="health_input" class="form-control btn btn-outline-light"
+                    accept=".xlsx">
+
+                <li>국민연금</li>
+                <input id="national_input" type="file" name="national_input" class="form-control btn btn-outline-light"
+                    accept=".xlsx">
+
+                <li>고용보험</li>
+                <input id="employ_input" type="file" name="employ_input" class="form-control btn btn-outline-light"
+                    accept=".xlsx">
+                <li>산재보험</li>
+                <input id="industrial_input" type="file" name="industrial_input" class="form-control btn btn-outline-light"
+                    accept=".xlsx">
+
+                <li id="download"><button type="submit" class="btn btn-outline-light">합친 파일 받기</button></li>
+            </form>
+        </ul>
+
+    </div>
+    
+{% endblock %}

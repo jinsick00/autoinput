@@ -1,0 +1,30 @@
+{% extends "boardbase.html" %}
+{% block content %}
+<p>글쓰기</p>
+<div>
+    <form method="POST">
+        {% csrf_token %}
+        <div>
+            <label for = "user" class = "form-label">작성자</label>
+            <input type = "text" class = "form-control" name="user" id = "user"
+            value="{{ form.user.value|default_if_none:'' }}">
+        </div>
+        <div>
+            <label for = "passwords" class = "form-label">비밀번호</label>
+            <input type = "text" class = "form-control" name="passwords" id = "passwords"
+            value="{{ form.passwords.value|default_if_none:'' }}">
+        </div>
+        <div>
+            <label for = "title" class = "form-label">제목</label>
+            <input type = "text" class = "form-control" name="title" id = "title"
+            value="{{ form.title.value|default_if_none:'' }}">
+        </div>
+        <div>
+            <label for = "content" class = "form-label">본문</label>
+            <input type = "text" class = "form-control" name="content" id = "content"
+            value="{{ form.content.value|default_if_none:'' }}">
+        </div>
+        <button type="submit" class="btn btn-outline-light" data-mdb-ripple-color="dark">글쓰기</button>
+    </form>
+</div>
+{% endblock %}
