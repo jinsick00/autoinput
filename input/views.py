@@ -32,7 +32,7 @@ def combine_files(request):
         국민기본.drop(columns = ["결정보험료"], inplace=True) # 불필요한 열 삭제
 
         file3 = request.FILES.get("employ_input")
-        고용기본 = pd.read_excel(file3,header = 1) # 고용보험 기본 세팅
+        고용기본 = pd.read_excel(file3,header = 1, thousands = ",") # 고용보험 기본 세팅
         생년월일통일 = 고용기본["생년월일"].replace("-", "", inplace = True, regex = True) # 생년월일 양식 통일
         고용기본 = 고용기본.set_index(["근로자명", "생년월일"]) # 근로자명, 생년월일 인덱스 처리
         # 생년월일통일 = 고용기본.columns = ["근로자명", "생년월일", "근로자실업급여보험료.3", "사업주실업급여보험료.3", "사업주고안직능보험료.3"] 22개 22개로 맞춰야 대서 안댄다
